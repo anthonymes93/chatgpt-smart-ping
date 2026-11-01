@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener((msg,sender) => {
     const s = {...defaults,...await chrome.storage.sync.get(defaults)};
     if(!s.enabled || !((s.background && msg.away)||(s.long && msg.duration>=s.threshold*1000))) return;
     await ping(s.sound,s.volume);
-    if(s.notify) await chrome.notifications.create({type:'basic',iconUrl:'icon.png',title:'ChatGPT finished',message:'Your response is ready.'});
+    if(s.notify) await chrome.notifications.create({type:'basic',iconUrl:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Wl6Zb8AAAAASUVORK5CYII=',title:'ChatGPT finished',message:'Your response is ready.'});
   })().catch(console.error);
 });
 chrome.runtime.onInstalled.addListener(async()=>{const existing=await chrome.storage.sync.get(null);await chrome.storage.sync.set({...defaults,...existing});});
